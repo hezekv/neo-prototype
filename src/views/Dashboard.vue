@@ -20,8 +20,38 @@
           <span>Sort by project author</span>
         </v-tooltip>
       </v-layout>
+      <v-card>
+        <v-card-title>
+          Contact Information
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="search"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+      </v-card>
+      <!-- <v-data-table  
+      :headers="headers"
+      :items="projects"
+      :search="search"
+      >
+      <template v-slot:items="props">
+        <td>{{ props.item.title }}</td>
+        <td>{{ props.item.person }}</td>
+        <td>{{ props.item.due }}</td>
+        <td><v-chip small :class="`${props.item.status} white--text my-2 caption`">{{ props.item.status }}</v-chip></td>
+      </template>
+      <template v-slot:no-results>
+        <v-alert :value="true" color="error" icon="warning">
+          Your search for "{{ search }}" found no results.
+        </v-alert>
+      </template>
+    </v-data-table> -->
       
-      <v-card flat v-for="project in projects" :key="project.title">
+      <v-card flat v-for="project in projects" :key="project.id">
         <v-layout row wrap :class="`pa-3 project ${project.status}`">
           <v-flex xs12 md6>
             <div class="caption grey--text">Project title</div>
@@ -55,7 +85,14 @@ import db from '@/fb'
 export default {
   data() {
     return {
-      projects: []
+      search: '',
+      headers: [
+        { text: 'Project Name', value: 'title' },
+        { text: 'User', value: 'people' },
+        { text: 'Due Date', value: 'due' },
+        { text: 'Status', value: 'status' },         
+      ],
+      projects: [],
     }
   },
   methods: {

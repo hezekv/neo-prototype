@@ -9,8 +9,8 @@
     <v-toolbar flat app>
       <v-toolbar-side-icon @click="drawer = !drawer" class="grey--text"></v-toolbar-side-icon>
       <v-toolbar-title class="text-uppercase grey--text">
-        <span class="font-weight-light">Ace</span>
-        <span>Todos</span>
+        <!-- <span class="font-weight-light">Ace</span> -->
+        <span>Final Control</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -39,7 +39,7 @@
           <v-avatar size="100">
             <img class="text-lg-center" src="/avatar-2.png">
           </v-avatar>
-          <p class="white--text subheading mt-1">Hezekiah Valdez</p>
+          <p class="white--text subheading mt-1">John Doe</p>
         </v-flex>
         <v-flex class="mt-4 mb-3">
           <Popup @projectAdded="snackbar = true"/>
@@ -67,7 +67,7 @@ export default {
   components: { Popup },
   data() {
     return {
-      drawer: false,
+      drawer: true,
       links: [
         { icon: 'dashboard', text: 'Dashboard', route: '/' },
         { icon: 'folder', text: 'My Projects', route: '/projects' },
