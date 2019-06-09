@@ -2,7 +2,7 @@
   <nav>
 
     <v-snackbar v-model="snackbar" :timeout="3000" top color="success">
-      <span>Project successfully added.</span>
+      <span>Location successfully added.</span>
       <v-btn flat color="white" @click="snackbar = false">Close</v-btn>
     </v-snackbar>
 
@@ -42,7 +42,7 @@
           <p class="white--text subheading mt-1">John Doe</p>
         </v-flex>
         <v-flex class="mt-4 mb-3">
-          <Popup @projectAdded="snackbar = true"/>
+          <AddLocation @locationAdded="snackbar = true"/>
         </v-flex>
       </v-layout>
       <v-list>
@@ -61,17 +61,15 @@
 </template>
 
 <script>
-import Popup from './Popup'
+import AddLocation from './AddLocation'
 
 export default {
-  components: { Popup },
+  components: { AddLocation },
   data() {
     return {
       drawer: true,
       links: [
-        { icon: 'dashboard', text: 'Dashboard', route: '/' },
-        { icon: 'folder', text: 'My Projects', route: '/projects' },
-        { icon: 'person', text: 'Team', route: '/team' },
+        { icon: 'home', text: 'Home', route: '/' },
       ],
       snackbar: false
     }

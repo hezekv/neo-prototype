@@ -1,28 +1,13 @@
 <template>
   <div class="dashboard">
     <h1 class="subheading grey--text">Dashboard</h1>
-
     <v-container class="my-5">
-
-      <v-layout row justify-start class="mb-3">
-        <v-tooltip top>
-          <v-btn small flat color="grey" @click="sortBy('title')" slot="activator">
-            <v-icon small left>folder</v-icon>
-            <span class="caption text-lowercase">By project name</span>
-          </v-btn>
-          <span>Sort by project name</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <v-btn small flat color="grey" @click="sortBy('person')" slot="activator">
-            <v-icon small left>person</v-icon>
-            <span class="caption text-lowercase">By Person</span>
-          </v-btn>
-          <span>Sort by project author</span>
-        </v-tooltip>
-      </v-layout>
+      <v-flex class="mt-4 mb-3">
+        <AddLocation @locationAdded="snackbar = true"/>
+      </v-flex>
       <v-card>
-        <v-card-title>
-          Contact Information
+        <v-card-title primary-title>
+          <h4 class="headline mb-0">Site Safety and Quality Information</h4>
           <v-spacer></v-spacer>
           <v-text-field
             v-model="search"
@@ -33,47 +18,94 @@
           ></v-text-field>
         </v-card-title>
       </v-card>
-      <!-- <v-data-table  
-      :headers="headers"
-      :items="projects"
-      :search="search"
-      >
-      <template v-slot:items="props">
-        <td>{{ props.item.title }}</td>
-        <td>{{ props.item.person }}</td>
-        <td>{{ props.item.due }}</td>
-        <td><v-chip small :class="`${props.item.status} white--text my-2 caption`">{{ props.item.status }}</v-chip></td>
-      </template>
-      <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning">
-          Your search for "{{ search }}" found no results.
-        </v-alert>
-      </template>
-    </v-data-table> -->
-      
-      <v-card flat v-for="project in projects" :key="project.id">
-        <v-layout row wrap :class="`pa-3 project ${project.status}`">
-          <v-flex xs12 md6>
-            <div class="caption grey--text">Project title</div>
-            <div>{{ project.title }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Person</div>
-            <div>{{ project.person }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Due by</div>
-            <div>{{ project.due }}</div>
-          </v-flex>
-          <v-flex xs2 sm4 md2>
-            <div class="right">
-              <v-chip small :class="`${project.status} white--text my-2 caption`">{{ project.status }}</v-chip>
-            </div>
-          </v-flex>
-        </v-layout>
-        <v-divider></v-divider>
-      </v-card>
+       <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <v-card>
+          <v-toolbar dark color="primary">
+          <v-btn icon dark @click="dialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Update Location</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click="submit" :loading="loading">Update</v-btn>
+          </v-toolbar-items>
+          <v-toolbar-items>
+            <v-btn dark flat @click="dialog = false">Cancel</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+          <v-card-title>
+            <span class="headline">{{ formTitle }}</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="editedItem.SiteFac_Name" label="Location name"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="editedItem.SiteFac_Address" label="Address"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="editedItem.SiteFac_City" label="City"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="editedItem.SiteFac_Country" label="Country"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="editedItem.SiteFac_ZipCode" label="Zipcode"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="editedItem.SiteFac_Leader" label="Site Leader"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field v-model="editedItem.SiteFac_QALeader" label="Site QA Leader"></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-text>
 
+          <!-- <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" flat @click="close">Cancel</v-btn>
+            <v-btn color="blue darken-1" flat @click="save">Save</v-btn>
+          </v-card-actions> -->
+        </v-card>
+      </v-dialog>
+
+      <v-data-table  
+      :headers="headers"
+      :items="SiteFacility_Info"
+      :search="search" 
+      >
+      <v-progress-linear v-slot:progress primary indeterminate></v-progress-linear>
+      <template v-slot:items="props">
+        <td>{{ props.item.SiteFac_City }}</td>
+        <td>{{ props.item.SiteFac_Name }}</td>
+        <td>{{ props.item.SiteFac_Address }}, {{ props.item.SiteFac_City }} {{ props.item.SiteFac_ZipCode }}  {{ props.item.SiteFac_Country }}</td>
+        <td>{{ props.item.SiteFac_Leader }}</td>
+        <td>{{ props.item.SiteFac_QALeader }}</td>
+        <td class="justify-center layout px-0">
+          <v-icon
+            small
+            class="mr-2"
+            @click="editItem(props.item)"
+          >
+            edit
+          </v-icon>
+          <v-icon
+            small
+            @click="deleteItem(props.item)"
+          >
+            delete
+          </v-icon>
+        </td>
+      </template>
+      <template v-slot:no-data>
+      <v-alert :value="true" color="error" icon="warning">
+        Your search for "{{ search }}" found no results.
+      </v-alert>
+    </template>
+    </v-data-table>
     </v-container>
    
   </div>
@@ -81,61 +113,110 @@
 
 <script>
 import db from '@/fb'
+import AddLocation from '../components/AddLocation'
 
 export default {
+  components: { AddLocation },
   data() {
     return {
-      search: '',
+      snackbar: false,
+        color: '',
+        mode: '',
+        timeout: 6000,
+        text: 'Hello, I\'m a snackbar',
+      dialog: false,
+      delete: false,
+      search: '',       
       headers: [
-        { text: 'Project Name', value: 'title' },
-        { text: 'User', value: 'people' },
-        { text: 'Due Date', value: 'due' },
-        { text: 'Status', value: 'status' },         
+        { text: 'Location', value: 'SiteFac_City' },
+        { text: 'Legal Entity Name (Plant)', value: 'SiteFac_Name' },
+        { text: 'Physical Address', value: 'SiteFacility_Address' },
+        { text: 'Site Leader', value: 'SiteFac_Leader' },
+         { text: 'Site QA Leader', value: 'SiteFac_QALeader' },
+        { text: 'Actions', value: 'name', sortable: false }   
       ],
-      projects: [],
+      SiteFacility_Info: [], 
+      editedIndex: -1,
+      editedItem: {
+        SiteFac_Name: '',
+        SiteFac_Address: '',
+        SiteFac_City: '',
+        SiteFac_Country: '',
+        SiteFac_ZipCode: 0,
+        SiteFac_Leader: '',
+        SiteFac_QALeader: ''
+      },
+      defaultItem: {
+        SiteFac_Name: '',
+        SiteFac_Address: '',
+        SiteFac_City: '',
+        SiteFac_Country: '',
+        SiteFac_ZipCode: 0,
+        SiteFac_Leader: '',
+        SiteFac_QALeader: ''
+      }
     }
   },
+  computed: {
+      formTitle () {
+        return this.editedIndex === -1 ? 'New Location' : 'Edit Location'
+      }
+    },
+    watch: {
+      dialog (val) {
+        val || this.close()
+      }
+    },
   methods: {
     sortBy(prop) {
-      this.projects.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
+      this.SiteFacility_Info.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
+    },
+    initialize () {
+      this.SiteFacility_Info = []
+    },
+    editItem (item) {
+      this.editedIndex = this.SiteFacility_Info.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
+    deleteItem (item) {
+      const index = this.SiteFacility_Info.indexOf(item)
+      confirm('Are you sure you want to delete this item?') && this.SiteFacility_Info.splice(index, 1)
+    },
+    close () {
+      this.dialog = false
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+    },
+    save () {
+      if (this.editedIndex > -1) {
+        Object.assign(this.SiteFacility_Info[this.editedIndex], this.editedItem)
+      } else {
+        this.SiteFacility_Info.push(this.editedItem)
+      }
+      this.close()
     }
   },
   created() {
-    db.collection('projects').onSnapshot(res => {
+    this.initialize();
+    db.collection('SiteFacility_Info').onSnapshot(res => {
       const changes = res.docChanges();
-
+      
       changes.forEach(change => {
         if (change.type === 'added') {
-          this.projects.push({
+          this.SiteFacility_Info.push({
             ...change.doc.data(),
             id: change.doc.id
           })
         }
       })
     })
-  },
+  }  
 }
 </script>
 
 <style>
-
-.project.complete{
-  border-left: 4px solid #3cd1c2;
-}
-.project.ongoing{
-  border-left: 4px solid #ffaa2c;
-}
-.project.overdue{
-  border-left: 4px solid #f83e70;
-}
-.v-chip.complete{
-  background: #3cd1c2;
-}
-.v-chip.ongoing{
-  background: #ffaa2c;
-}
-.v-chip.overdue{
-  background: #f83e70;
-}
 
 </style>
