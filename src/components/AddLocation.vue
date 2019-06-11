@@ -19,14 +19,11 @@
         <v-form class="px-3" ref="form">
           <v-container>
             <v-layout wrap>
-              <fieldset>
-                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Name" label="Location name" prepend-icon="domain" :rules="inputRules"></v-text-field></v-flex>
-                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Address" label="Address" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
-                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_City" label="City" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
-                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Country" label="Country" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
-                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_ZipCode" label="Zipcode" prepend-icon="location_on"></v-text-field></v-flex>
-              </fieldset>
-              
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Name" label="Location name" prepend-icon="domain" :rules="inputRules"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Address" label="Address" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_City" label="City" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Country" label="Country" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_ZipCode" label="Zipcode" prepend-icon="location_on"></v-text-field></v-flex>
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Leader" label="Site Leader" prepend-icon="perm_identity" :rules="inputRules"></v-text-field></v-flex>
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_QALeader" label="Site QA Leader" prepend-icon="perm_identity" :rules="inputRules"></v-text-field></v-flex>
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Headcount" label="Headcount" prepend-icon="perm_identity"></v-text-field></v-flex>
@@ -50,7 +47,7 @@
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_NumOfShifts" label="Number of Shifts" prepend-icon="perm_identity"></v-text-field></v-flex>
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_ProdListing" label="Product listing" prepend-icon="perm_identity" hint="(size, pressure, etc..)"></v-text-field></v-flex>
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Certifications" label="3rd Party Certificaitons" prepend-icon="perm_identity"></v-text-field></v-flex>
-              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_QualityManual" label="Quality Manual" prepend- icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_QualityManual" label="Quality Manual" prepend-icon="perm_identity"></v-text-field></v-flex>
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_CalibrationProgram" label="M&amp;TE Calibration Program" prepend-icon="perm_identity" hint="(YES / NO)"></v-text-field></v-flex>              <!-- <v-menu v-model="menu" :close-on-content-click="false">
               <v-text-field slot="activator" :rules="inputRules"
                   :value="formattedDate" clearable label="Due date" prepend-icon="date_range">
