@@ -19,17 +19,40 @@
         <v-form class="px-3" ref="form">
           <v-container>
             <v-layout wrap>
-              <v-flex xs12 sm6 md4> <v-text-field v-model="SiteFac_Name" label="Location name" prepend-icon="domain" :rules="inputRules"></v-text-field></v-flex>
-              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Address" label="Address" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
-              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_City" label="City" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
-              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Country" label="Country" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
-              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_ZipCode" label="Zipcode" prepend-icon="location_on"></v-text-field></v-flex>
+              <fieldset>
+                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Name" label="Location name" prepend-icon="domain" :rules="inputRules"></v-text-field></v-flex>
+                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Address" label="Address" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
+                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_City" label="City" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
+                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Country" label="Country" prepend-icon="location_on" :rules="inputRules"></v-text-field></v-flex>
+                <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_ZipCode" label="Zipcode" prepend-icon="location_on"></v-text-field></v-flex>
+              </fieldset>
+              
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Leader" label="Site Leader" prepend-icon="perm_identity" :rules="inputRules"></v-text-field></v-flex>
               <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_QALeader" label="Site QA Leader" prepend-icon="perm_identity" :rules="inputRules"></v-text-field></v-flex>
-              
-
-              <!-- <v-menu v-model="menu" :close-on-content-click="false">
-                <v-text-field slot="activator" :rules="inputRules"
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Headcount" label="Headcount" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Production" label="Production" prepend-icon="perm_identity" hint="(DL - H/S)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Quality" label="Quality" prepend-icon="perm_identity" ></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_EngrTechnical" label="Site QA Leader" prepend-icon="perm_identity" ></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Management" label="Management" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_TotalPlantSQ" label="Total Plant" prepend-icon="perm_identity" hint="Sq Ft/M"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Machining" label="Machining" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Painting" label="Painting" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_HeatTreat" label="Heat Treat" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Welding" label="Welding" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Hydro" label="Hydro" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_FuncTesting" label="Functional Testing" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Radiograph" label="Radiograph" prepend-icon="perm_identity" hint="(RT)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Ultrasonic" label="Ultrasonic" prepend-icon="perm_identity" hint="(UT)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Penetrant" label="Penetrant" prepend-icon="perm_identity" hint="(PT)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_MagnetParticle" label="Magnetic Particle" prepend-icon="perm_identity" hint="(MT)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Visualinspection" label="Visual" prepend-icon="perm_identity" hint="(VT)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_CurrentCapacity" label="Current capacity" prepend-icon="perm_identity" hint="(% Loaded of expected Capacity)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_NumOfShifts" label="Number of Shifts" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_ProdListing" label="Product listing" prepend-icon="perm_identity" hint="(size, pressure, etc..)"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_Certifications" label="3rd Party Certificaitons" prepend-icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_QualityManual" label="Quality Manual" prepend- icon="perm_identity"></v-text-field></v-flex>
+              <v-flex xs12 sm6 md4><v-text-field v-model="SiteFac_CalibrationProgram" label="M&amp;TE Calibration Program" prepend-icon="perm_identity" hint="(YES / NO)"></v-text-field></v-flex>              <!-- <v-menu v-model="menu" :close-on-content-click="false">
+              <v-text-field slot="activator" :rules="inputRules"
                   :value="formattedDate" clearable label="Due date" prepend-icon="date_range">
                 </v-text-field>
                 <v-date-picker v-model="due" @change="menu = false"></v-date-picker>
@@ -59,7 +82,9 @@ export default {
       SiteFac_QALeader: '',
       SiteFac_Headcount: '',
       SiteFac_Production: '',
+      SiteFac_Quality: '',
       SiteFac_EngrTechnical: '',
+      SiteFac_Management: '',
       SiteFac_TotalPlantSQ: '',
       SiteFac_Machining: '',
       SiteFac_Painting: '',
@@ -100,7 +125,9 @@ export default {
           SiteFac_QALeader: this.SiteFac_QALeader,
           SiteFac_Headcount: thisSiteFac_Headcount,
           SiteFac_Production: this.SiteFac_Headcount,
+          SiteFac_Quality: this.SiteFac_Quality,
           SiteFac_EngrTechnical: this.SiteFac_EngrTechnical,
+          SiteFac_Management: this.SiteFac_Management,
           SiteFac_TotalPlantSQ: this.SiteFac_TotalPlantSQ,
           SiteFac_Machining: this.SiteFac_Machining,
           SiteFac_Painting: this.SiteFac_Painting,
