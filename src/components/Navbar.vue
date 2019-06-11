@@ -15,7 +15,7 @@
       <v-spacer></v-spacer>
 
       <!-- dropdown menu -->
-      <v-menu offset-y>
+      <!-- <v-menu offset-y>
         <v-btn flat slot="activator" color="grey">
           <v-icon left>expand_more</v-icon>
           <span>Menu</span>
@@ -30,16 +30,16 @@
       <v-btn flat color="grey">
         <span>Sign Out</span>
         <v-icon right>exit_to_app</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-toolbar>
 
     <v-navigation-drawer app v-model="drawer" class="primary">
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
-            <img class="text-lg-center" src="/avatar-2.png">
+            <img class="text-lg-center" src="/my-photo.png">
           </v-avatar>
-          <p class="white--text subheading mt-1">John Doe</p>
+          <p class="white--text subheading mt-1">{{ userName }}</p>
         </v-flex>
         <v-flex class="mt-4 mb-3">
           <AddLocation @locationAdded="snackbar = true"/>
@@ -56,7 +56,6 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-
   </nav>
 </template>
 
@@ -67,6 +66,7 @@ export default {
   components: { AddLocation },
   data() {
     return {
+      userName: 'Simon Sigur',
       drawer: true,
       links: [
         { icon: 'home', text: 'Home', route: '/' },
