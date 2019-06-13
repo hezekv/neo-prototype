@@ -17,3 +17,9 @@ export default {
   name: 'App',
 }
 </script>
+
+<style>
+  .application--wrap {
+    background-image: linear-gradient(90deg, #F5F7FA, #C3CFE2);
+  }
+</style>

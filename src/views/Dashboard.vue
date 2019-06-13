@@ -1,13 +1,13 @@
 <template>
   <div class="dashboard">
-    <h1 class="subheading grey--text">Dashboard</h1>
+
     <v-container class="my-5">
-      <h4 class="headline mb-0">Site Safety and Quality Information</h4>
+      <h4 class="headline mb-4 primary--text">Site Safety and Quality Information</h4>
       <v-card>
-        <v-card-title primary-title>
+        <v-card-title primary-title class="mb-2">
           <v-flex class="mt-2 mb-2">
             <AddLocation @locationAdded="snackbar = true"/>
-          </v-flex>          
+          </v-flex>
           <v-spacer></v-spacer>          
           <v-text-field
             v-model="search"
@@ -15,9 +15,11 @@
             label="Search"
             single-line
             hide-details
+            class="pa-3"
           ></v-text-field>
         </v-card-title>
       </v-card>
+
        <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
         <v-card>
           <v-toolbar dark color="info">
@@ -68,7 +70,7 @@
           </v-card-actions> -->
         </v-card>
       </v-dialog>
-      
+
         <v-data-table  
         :headers="headers"
         :items="SiteFacility_Info"

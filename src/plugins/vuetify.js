@@ -8,6 +8,7 @@ Vue.use(Vuetify, {
     primary: '#004b8d',
     success: '#00aa7e',
     info: '#00a4d2',
-    error: '#d31245'
+    error: '#d31245',
+    primewhite: '#F5F7FA',
   }
 })
