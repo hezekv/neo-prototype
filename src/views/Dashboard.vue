@@ -78,6 +78,22 @@
         >
         <v-progress-linear v-model="value" :active="show" primary :indeterminate="query" :query="true"></v-progress-linear>
         <template v-slot:items="props">
+          <td>
+            <v-tooltip top>
+              <template v-slot:activator="{ on }">
+                <v-icon
+                  small
+                  class="mr-2"
+                  color="info"
+                  @click="updateItem(props.item)"
+                  v-on="on"
+                >
+                  edit
+                </v-icon>
+              </template>
+              <span>Edit Location</span>
+            </v-tooltip>
+          </td>
           <td>{{ props.item.SiteFac_City }}</td>
           <td>{{ props.item.SiteFac_Name }}</td>
           <td>{{ props.item.SiteFac_Address }}, {{ props.item.SiteFac_City }} {{ props.item.SiteFac_ZipCode }}  {{ props.item.SiteFac_Country }}</td>
@@ -148,11 +164,12 @@ export default {
       delete: false,
       search: '',       
       headers: [
+        { text: '', value: 'view_details', sortable: false },
         { text: 'Location', value: 'SiteFac_City' },
         { text: 'Legal Entity Name (Plant)', value: 'SiteFac_Name' },
         { text: 'Physical Address', value: 'SiteFacility_Address' },
         { text: 'Site Leader', value: 'SiteFac_Leader' },
-         { text: 'Site QA Leader', value: 'SiteFac_QALeader' },
+        { text: 'Site QA Leader', value: 'SiteFac_QALeader' },
         { text: 'Actions', value: 'name', sortable: false }   
       ],
       SiteFacility_Info: [], 

@@ -18,10 +18,10 @@
     
         <v-form class="px-3" ref="form">
           <v-container>
-            <v-layout row wrap>
+            <v-layout row wrap class="ml-2">
 
               <!-- site admin -->
-              <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+              <v-flex xs12 sm6 pa-4 md5 class="mx-5 my-4 add-location-form">
                 <v-subheader><p class="mb-0">Site Administrator</p></v-subheader>
                 <v-text-field v-model="SiteFac_Name" label="Location name" prepend-icon="domain" :rules="inputRules"></v-text-field>
                 <v-text-field v-model="SiteFac_Address" label="Address" prepend-icon="location_on" :rules="inputRules"></v-text-field>
@@ -33,7 +33,7 @@
               </v-flex>
 
               <!-- site personnel -->
-              <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+              <v-flex xs12 sm6 pa-4 md5 class="mx-5 my-4 add-location-form">
                 <v-subheader><p class="mb-0">Site Personnel</p></v-subheader>
                 <v-text-field v-model="SiteFac_Headcount" label="Headcount" prepend-icon="perm_identity"></v-text-field>
                 <v-text-field v-model="SiteFac_Production" label="Production" prepend-icon="perm_identity" hint="(DL - H/S)"></v-text-field>
@@ -43,7 +43,7 @@
               </v-flex>
 
               <!-- site capabilities -->
-              <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+              <v-flex xs12 sm6 pa-4 md5 class="mx-5 my-4 add-location-form">
                 <v-subheader><p class="mb-0">Site Facility</p></v-subheader>
                 <v-text-field v-model="SiteFac_TotalPlantSQ" label="Total Plant" prepend-icon="perm_identity" hint="Sq Ft/M" class="mb-4"></v-text-field>
 
@@ -63,7 +63,7 @@
               </v-flex>
 
               <!-- site capacity -->
-              <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+              <v-flex xs12 sm6 md5 class="pa-4 mx-5 my-4 add-location-form">
                 <v-subheader><p class="mb-0">Site Capacity</p></v-subheader>
                 <v-text-field v-model="SiteFac_Visualinspection" label="Visual" prepend-icon="perm_identity" hint="(VT)"></v-text-field>
                 <v-text-field v-model="SiteFac_CurrentCapacity" label="Current capacity" prepend-icon="perm_identity" hint="(% Loaded of expected Capacity)"></v-text-field>
