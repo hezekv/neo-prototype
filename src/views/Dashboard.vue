@@ -24,41 +24,83 @@
         <v-card>
           <v-toolbar dark color="info">
           <v-btn icon dark @click="dialog = false">
-            <v-icon>close</v-icon>
+            <v-icon class="primary--text">close</v-icon>
           </v-btn>
-          <v-toolbar-title>Update Location - {{ editedItem.SiteFac_Name }}</v-toolbar-title>
+          <v-toolbar-title class="primary--text">Update Location - {{ editedItem.SiteFac_Name }}</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click="save" >Update</v-btn>
+            <v-btn dark flat @click="save" class="primary--text">Update</v-btn>
           </v-toolbar-items>
           <v-toolbar-items>
-            <v-btn dark flat @click="dialog = false">Cancel</v-btn>
+            <v-btn dark flat @click="dialog = false" class="primary--text">Cancel</v-btn>
           </v-toolbar-items>
         </v-toolbar>
           <v-card-text>
             <v-container grid-list-md>
-              <v-layout wrap>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.SiteFac_Name" label="Location name"></v-text-field>
+              <v-layout wrap class="ml-5">
+                <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+                  <v-subheader><p class="mb-3">Site Administrator</p></v-subheader>
+                  <v-text-field v-model="editedItem.SiteFac_Name" label="Location name" prepend-icon="domain" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Address" label="Address" prepend-icon="location_on" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_City" label="City" prepend-icon="location_on" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Country" label="Country" prepend-icon="location_on" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_ZipCode" label="Zipcode" prepend-icon="location_on" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Leader" label="Site Leader" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_QALeader" label="Site QA Leader" prepend-icon="perm_identity" class="mb-3"></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.SiteFac_Address" label="Address"></v-text-field>
+                
+                <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+                  <v-subheader>
+                      <p class="mb-3">Site Personnel</p>
+                  </v-subheader>
+                  <v-text-field v-model="editedItem.SiteFac_Headcount" label="Headcount" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Production" label="Production" prepend-icon="perm_identity" hint="(DL - H/S)" class="mb-3">
+                  </v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Quality" label="Quality" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_EngrTechnical" label="Site QA Leader" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Management" label="Management" prepend-icon="perm_identity" class="mb-3"></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.SiteFac_City" label="City"></v-text-field>
+
+                <!-- site capabilities -->
+                <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+                  <v-subheader><p class="mb-0">Site Facility</p></v-subheader>
+                  <v-text-field v-model="editedItem.SiteFac_TotalPlantSQ" label="Total Plant" prepend-icon="perm_identity" hint="Sq Ft/M" class="mb-5"></v-text-field>
+
+                  <v-subheader><p class="mb-0">Site Capabilities</p></v-subheader>
+                  <v-text-field v-model="editedItem.SiteFac_Machining" label="Machining" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Painting" label="Painting" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_HeatTreat" label="Heat Treat" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Welding" label="Welding" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Hydro" label="Hydro" prepend-icon="perm_identity" class="mb-5"></v-text-field>
+
+                  <v-subheader><p class="mb-0">NDE Capabilities</p></v-subheader>
+                  <v-text-field v-model="editedItem.SiteFac_FuncTesting" label="Functional Testing" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Radiograph" label="Radiograph" prepend-icon="perm_identity" hint="(RT)" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Ultrasonic" label="Ultrasonic" prepend-icon="perm_identity" hint="(UT)" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Penetrant" label="Penetrant" prepend-icon="perm_identity" hint="(PT)" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_MagnetParticle" label="Magnetic Particle" prepend-icon="perm_identity" hint="(MT)" class="mb-3"></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.SiteFac_Country" label="Country"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.SiteFac_ZipCode" label="Zipcode"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.SiteFac_Leader" label="Site Leader"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="editedItem.SiteFac_QALeader" label="Site QA Leader"></v-text-field>
-                </v-flex>
+
+                <!-- site capacity -->
+                <v-flex xs12 sm6 pa-4 md5 class="ma-4 add-location-form">
+                  <v-subheader>
+                      <p class="mb-0">Site Capacity</p>
+                  </v-subheader>
+                  <v-text-field v-model="editedItem.SiteFac_Visualinspection" label="Visual" prepend-icon="perm_identity" hint="(VT)" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_CurrentCapacity" label="Current capacity" prepend-icon="perm_identity"
+                      hint="(% Loaded of expected Capacity)" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_NumOfShifts" label="Number of Shifts" prepend-icon="perm_identity" class="mb-5"></v-text-field>
+
+                  <v-subheader>
+                      <p class="mb-0">Site Quality</p>
+                  </v-subheader>
+                  <v-text-field v-model="editedItem.SiteFac_ProdListing" label="Product listing" prepend-icon="perm_identity"
+                      hint="(size, pressure, etc..)" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_Certifications" label="3rd Party Certificaitons" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_QualityManual" label="Quality Manual" prepend-icon="perm_identity" class="mb-3"></v-text-field>
+                  <v-text-field v-model="editedItem.SiteFac_CalibrationProgram" label="M&amp;TE Calibration Program" prepend-icon="perm_identity"
+                      hint="(YES / NO)" class="mb-3"></v-text-field>
+                </v-flex>        
               </v-layout>
             </v-container>
           </v-card-text>
@@ -78,22 +120,6 @@
         >
         <v-progress-linear v-model="value" :active="show" primary :indeterminate="query" :query="true"></v-progress-linear>
         <template v-slot:items="props">
-          <td>
-            <v-tooltip top>
-              <template v-slot:activator="{ on }">
-                <v-icon
-                  small
-                  class="mr-2"
-                  color="info"
-                  @click="updateItem(props.item)"
-                  v-on="on"
-                >
-                  edit
-                </v-icon>
-              </template>
-              <span>Edit Location</span>
-            </v-tooltip>
-          </td>
           <td>{{ props.item.SiteFac_City }}</td>
           <td>{{ props.item.SiteFac_Name }}</td>
           <td>{{ props.item.SiteFac_Address }}, {{ props.item.SiteFac_City }} {{ props.item.SiteFac_ZipCode }}  {{ props.item.SiteFac_Country }}</td>
@@ -164,7 +190,6 @@ export default {
       delete: false,
       search: '',       
       headers: [
-        { text: '', value: 'view_details', sortable: false },
         { text: 'Location', value: 'SiteFac_City' },
         { text: 'Legal Entity Name (Plant)', value: 'SiteFac_Name' },
         { text: 'Physical Address', value: 'SiteFacility_Address' },
@@ -293,5 +318,8 @@ export default {
 </script>
 
 <style>
-
+  
+  .v-text-field .v-label {
+    top: 2px;
+  }
 </style>
